@@ -16,5 +16,14 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongodb": "^5.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amdadullah-Raihan/tourism-roberto-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amdadullah-Raihan/tourism-roberto-server/issues"
+  },
+  "homepage": "https://github.com/Amdadullah-Raihan/tourism-roberto-server#readme"
 }
