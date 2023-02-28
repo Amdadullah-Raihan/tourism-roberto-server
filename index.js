@@ -32,7 +32,15 @@ async function run(){
         console.log('database connected');
         const database = client.db("tourismRobertoDB");
         const roomsCollections = database.collection('rooms')
+        const blogCollections = database.collection('blogs')
 
+
+        //post api for create blog
+        app.post('/create-blog', async(req,res)=>{
+
+            const result = await blogCollections.insertOne(req.body)
+            res.json(result)
+        })
 
     }
     finally{
