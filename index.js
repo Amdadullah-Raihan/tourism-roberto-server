@@ -38,13 +38,24 @@ async function run(){
         //post api for create blog
         app.post('/create-blog', async(req,res)=>{
 
-            const result = await blogCollections.insertOne(req.body)
+            const result = await blogsCollections.insertOne(req.body)
             res.json(result)
         })
         //post api for create blog
         app.post('/create-room', async(req,res)=>{
-
+            // console.log(req.body);
             const result = await roomsCollections.insertOne(req.body)
+            res.json(result)
+        })
+
+        //get api for getting rooms from mongodb
+        app.get('/rooms', async(req,res)=>{
+            const result = await roomsCollections.find({}).toArray()
+            res.json(result)
+        })
+        //get api for blogs
+        app.get('/blogs', async(req,res)=>{
+            const result = await blogsCollections.find({}).toArray()
             res.json(result)
         })
 
