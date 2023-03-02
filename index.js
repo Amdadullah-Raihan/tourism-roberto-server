@@ -68,6 +68,16 @@ async function run(){
             res.json(room)
         })
 
+        //deleting a room by id
+        app.delete("/delete-room/:id", async(req, res)=>{
+            const id = (req.params.id);
+            // console.log(req.params);
+            const query = { _id: new ObjectId(id) }
+            const room = await roomsCollections.deleteOne(query)
+            // console.log(event);
+            res.json(room)
+        })
+
     }
     finally{
         //await client.close()
