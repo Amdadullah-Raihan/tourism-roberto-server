@@ -78,6 +78,15 @@ async function run(){
             res.json(room)
         })
 
+        // getting single blog by id
+        app.get('/blogs/:id', async (req, res) => {
+            const id = (req.params.id);
+            const query = { _id: new ObjectId(id) }
+            const blog = await blogsCollections.findOne(query)
+            // console.log(event);
+            res.json(blog)
+        })
+
     }
     finally{
         //await client.close()
