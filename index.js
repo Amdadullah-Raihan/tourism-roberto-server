@@ -97,9 +97,10 @@ async function run(){
         })
 
         // getting bookings by email
-        app.post("/my-bookings", async(req, res)=>{
-            const email = (req.body.email);
-            const query = {_email: email}
+        app.get("/my-bookings", async(req, res)=>{
+            const email = (req.query.email);
+            console.log(email);
+            const query = {userEmail: email}
             const myBookings = await bookingsCollections.find(query).toArray()
             res.json(myBookings)
 
