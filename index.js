@@ -100,8 +100,8 @@ async function run(){
         app.post("/my-bookings", async(req, res)=>{
             const email = (req.body.email);
             const query = {_email: email}
-            const bookings = await bookingsCollections.find(query).toArray()
-            res.json(bookings)
+            const myBookings = await bookingsCollections.find(query).toArray()
+            res.json(myBookings)
 
         })
         //deleting booking by id
@@ -113,7 +113,11 @@ async function run(){
             // console.log(event);
             res.json(result)
         })
-
+        //getting bookings 
+        app.get('/bookings', async(req, res)=>{
+            const bookings = await bookingsCollections.find({}).toArray();
+            res.json(bookings)
+        })
 
     }
     finally{
