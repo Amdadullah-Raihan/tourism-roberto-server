@@ -34,7 +34,8 @@ async function run(){
         const database = client.db("tourismRobertoDB");
         const roomsCollections = database.collection('rooms')
         const blogsCollections = database.collection('blogs')
-      
+        const bookingsCollections = database.collection('bookings')
+        
 
         //post api for create blog
         app.post('/create-blog', async(req,res)=>{
@@ -86,6 +87,15 @@ async function run(){
             // console.log(event);
             res.json(blog)
         })
+
+        // creating bookins
+        app.post('/bookings', async(req, res)=>{
+            console.log(req.body);
+            const result = await bookingsCollections.insertOne(req.body)
+            res.json(result)
+
+        })
+
 
     }
     finally{
