@@ -99,7 +99,6 @@ async function run(){
         // getting bookings by email
         app.get("/my-bookings", async(req, res)=>{
             const email = (req.query.email);
-            console.log(email);
             const query = {userEmail: email}
             const myBookings = await bookingsCollections.find(query).toArray()
             res.json(myBookings)
@@ -118,6 +117,20 @@ async function run(){
         app.get('/bookings', async(req, res)=>{
             const bookings = await bookingsCollections.find({}).toArray();
             res.json(bookings)
+        })
+
+        app.put('/manage-bookings/:id', async(req, res)=>{
+            console.log(req.params, req.body);
+            const filter = {_id: new ObjectId(req.params.id)};
+            const options = { upsert: true };
+            // create a document that sets the plot of the movie
+            const updateDoc = {
+                $set: {
+                    approved: req.body.approved
+                }
+            };
+            const result = await bookingsCollections.updateOne(filter, updateDoc, options);
+            res.json(result)
         })
 
     }
