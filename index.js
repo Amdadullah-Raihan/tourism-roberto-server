@@ -90,10 +90,28 @@ async function run(){
 
         // creating bookins
         app.post('/bookings', async(req, res)=>{
-            console.log(req.body);
+            
             const result = await bookingsCollections.insertOne(req.body)
             res.json(result)
+            
+        })
 
+        // getting bookings by email
+        app.post("/my-bookings", async(req, res)=>{
+            const email = (req.body.email);
+            const query = {_email: email}
+            const bookings = await bookingsCollections.find(query).toArray()
+            res.json(bookings)
+
+        })
+        //deleting booking by id
+        app.delete('/delete-booking', async(req, res)=>{
+            const id = (req.body.id);
+            // console.log(req.params);
+            const query = { _id: new ObjectId(id) }
+            const result= await bookingsCollections.deleteOne(query)
+            // console.log(event);
+            res.json(result)
         })
 
 
